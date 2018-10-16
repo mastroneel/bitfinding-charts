@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/app.css">
+
+    <title></title>
+  </head>
+  <body>
+
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+      crossorigin="anonymous"></script> -->
+  <script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+  <div class="widget">
+  <canvas id="donutChart"></canvas>
+    <!-- <div class="perc above" style="display:none;">
+      <span id="percentage"></span>%
+    </div> -->
+    <!-- <div id="chartjs-tooltip"></div> -->
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  <script src="node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+
+  <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  var ctx = document.getElementById("donutChart");
+  var cht = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['AAA', 'BBB', 'CCC', 'DDD', 'EEE', 'FFF', 'GGG', 'HHH'],
+      datasets: [{
+        label: 'Index Fund Distribution',
+        data: [50, 30, 10, 5, 1, 1, 1, 1],
+        backgroundColor: [
+          'rgba(255, 29, 85, 1)',
+          'rgba(255, 107, 134, 1)',
+          'rgba(255, 177, 189, 1)',
+          'rgba(255, 225, 230, 1)',
+          'rgba(191, 192, 193, 1)',
+          'rgba(212, 213, 213, 1)',
+          'rgba(240, 140, 158, 1)',
+          'rgba(250, 82, 124, 1)'
+        ],
+        borderColor: [
+          '#fff'
+        ],
+        hoverBorderColor: [
+          'rgba(255, 29, 85, 1)',
+          'rgba(255, 107, 134, 1)',
+          'rgba(255, 177, 189, 1)',
+          'rgba(255, 225, 230, 1)',
+          'rgba(191, 192, 193, 1)',
+          'rgba(212, 213, 213, 1)',
+          'rgba(240, 140, 158, 1)',
+          'rgba(250, 82, 124, 1)'
+        ],
+        borderWidth: 5,
+        hoverBorderWidth: 0,
+      }]
+    },
+    options: {
+
+        // tooltips: {
+        //     // Disable the on-canvas tooltip
+        //     enabled: false,
+        //
+        //     custom: function(tooltipModel) {
+        //         // Tooltip Element
+        //         var tooltipEl = document.getElementById('chartjs-tooltip');
+        //
+        //         // Create element on first render
+        //         if (!tooltipEl) {
+        //             tooltipEl = document.createElement('div');
+        //             tooltipEl.id = 'chartjs-tooltip';
+        //             tooltipEl.innerHTML = "<table></table>";
+        //             document.body.appendChild(tooltipEl);
+        //         }
+        //
+        //         // Hide if no tooltip
+        //         if (tooltipModel.opacity === 0) {
+        //             tooltipEl.style.opacity = 0;
+        //             return;
+        //         }
+        //
+        //         // Set caret Position
+        //         tooltipEl.classList.remove('above', 'below', 'no-transform');
+        //         if (tooltipModel.yAlign) {
+        //             tooltipEl.classList.add(tooltipModel.yAlign);
+        //         } else {
+        //             tooltipEl.classList.add('no-transform');
+        //         }
+        //
+        //         function getBody(bodyItem) {
+        //             return bodyItem.lines;
+        //         }
+        //
+        //         // Set Text
+        //         if (tooltipModel.body) {
+        //             var titleLines = tooltipModel.title || [];
+        //             var bodyLines = tooltipModel.body.map(getBody);
+        //
+        //             var innerHtml = '<div>';
+        //
+        //             titleLines.forEach(function(title) {
+        //                 innerHtml += '<div>' + title + '</div>';
+        //             });
+        //             innerHtml += '<div></div>';
+        //
+        //             bodyLines.forEach(function(body, i) {
+        //                 var colors = tooltipModel.labelColors[i];
+        //                 var style = 'background:' + colors.backgroundColor;
+        //                 style += '; border-color:' + colors.borderColor;
+        //                 style += '; border-width: 2px';
+        //                 var span = '<span style="' + style + '"></span>';
+        //                 innerHtml += '<div>' + span + body + '</div>';
+        //             });
+        //             innerHtml += '</div>';
+        //
+        //             var tableRoot = tooltipEl.querySelector('table');
+        //             tableRoot.innerHTML = innerHtml;
+        //         }
+        //
+        //         // `this` will be the overall tooltip
+        //         var position = this._chart.canvas.getBoundingClientRect();
+        //
+        //         // Display, position, and set styles for font
+        //         tooltipEl.style.opacity = 1;
+        //         // tooltipEl.style.position = 'absolute';
+        //         // tooltipEl.style.left = position.left + tooltipModel.caretX + 'px';
+        //         // tooltipEl.style.top = position.top + tooltipModel.caretY + 'px';
+        //         tooltipEl.style.width = '130px';
+        //         tooltipEl.style.textAlign = 'center';
+        //         tooltipEl.style.margin = '0 auto';
+        //         // tooltipEl.style.position = 'absolute';
+        //         // tooltipEl.style.left = '380px';
+        //         // tooltipEl.style.top = '250px';
+        //         // tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
+        //         tooltipEl.style.fontSize = '30px';
+        //         // tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
+        //         tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
+        //     }
+        // }
+
+    }
+  });
+  </script>
+
+  </body>
+</html>

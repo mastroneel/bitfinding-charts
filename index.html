@@ -3,10 +3,235 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/app.css">
+
     <title></title>
   </head>
   <body>
 
+  <div id="donutChart"></div>
+
+
+  <div id="lineChart"></div>
+
+<div id="vacation-time-chart"></div>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+
+
+  <script>
+
+
+
+  $(function () {
+      var chart = new Highcharts.Chart({
+          chart: {
+              renderTo: 'vacation-time-chart',
+              type: 'pie',
+              // width: 600,
+              // height: 600,
+              borderRadius: 0
+          },
+          credits: {
+              enabled: false
+          },
+          title: false,
+          tooltip: false,
+          plotOptions: {
+              pie: {
+                  borderWidth: 6,
+                  innerSize: '50%',
+                  size: '100%',
+                  // shadow: true,
+                  // {
+                  //     color: '#000000',
+                  //     offsetX: 0,
+                  //     offsetY: 2,
+                  //     opacity: 0.7,
+                  //     width: 3
+                  // },
+                  dataLabels: false,
+                  // stickyTracking: false,
+                  // states: {
+                  //     hover: {
+                  //         enabled: false
+                  //     }
+                  // },
+                  point: {
+                  events: {
+                      mouseOver: function(){
+                          this.series.chart.innerText.attr({text: this.y});
+                      },
+                      mouseOut: function(){
+                          this.series.chart.innerText.attr({text: ''});
+                      }
+                  }
+                  }
+              }
+
+          },
+          colors: [
+            'rgba(255, 29, 85, 1)',
+            'rgba(255, 107, 134, 1)',
+            'rgba(255, 177, 189, 1)',
+            'rgba(255, 225, 230, 1)',
+            'rgba(191, 192, 193, 1)',
+            'rgba(212, 213, 213, 1)',
+            'rgba(240, 140, 158, 1)',
+            'rgba(250, 82, 124, 1)'
+          ],
+          legend: {
+            align: 'center',
+            layout: 'horizontal',
+            floating: true,
+            verticalAlign: 'top'
+          },
+          series: [{
+              // data: [
+              //     {y:40, color: colors[0]},
+              //     {y:0, color: colors[1]},
+              //     {y:60, color: colors[2]}
+              // ]
+              data: [
+                ['AAA', 50],
+                ['BBB', 30],
+                ['CCC', 10],
+                ['DDD', 5],
+                ['EEE', 1],
+                ['FFF', 1],
+                ['GGG', 1],
+                ['HHH', 1]
+              ]
+          }]
+      },
+       function(chart) { // on complete
+
+          var xpos = 111;
+          var ypos = 111;
+          var circleradius = 102;
+
+          // Render the text
+          chart.innerText = chart.renderer.text('', xpos, ypos).css({
+                  width: circleradius*2,
+                  color: '#21232e',
+                  fontSize: '40px',
+                  textAlign: 'center',
+                  maxWidth: '65px',
+                  display: 'block',
+                  margin: '0 auto'
+            }).attr({
+              zIndex: 999
+          }).add();
+      });
+  });
+
+
+
+
+
+
+
+  // initialize donut chart
+  document.addEventListener("DOMContentLoaded", function() {
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        type: 'pie',
+        renderTo: 'donutChart'
+      },
+      // title: {
+      //   verticalAlign: 'middle',
+      //   floating: true,
+      //   text: 'CENTERED<br>TEXT'
+      // },
+      title: false,
+      tooltip: false,
+      plotOptions: {
+        pie: {
+          innerSize: '50%',
+          showInLegend: true,
+          dataLabels: {
+            enabled: false
+          },
+          borderWidth: 5,
+          events: {
+              mouseOver: function(){
+                  this.series.chart.innerText.attr({text: this.y});
+              },
+              mouseOut: function(){
+                  this.series.chart.innerText.attr({text: 112});
+              }
+          }
+        }
+      },
+      colors: [
+        'rgba(255, 29, 85, 1)',
+        'rgba(255, 107, 134, 1)',
+        'rgba(255, 177, 189, 1)',
+        'rgba(255, 225, 230, 1)',
+        'rgba(191, 192, 193, 1)',
+        'rgba(212, 213, 213, 1)',
+        'rgba(240, 140, 158, 1)',
+        'rgba(250, 82, 124, 1)'
+      ],
+      legend: {
+        align: 'center',
+        layout: 'horizontal',
+        floating: true,
+        borderRadius: 0,
+        squareSymbol: true,
+        verticalAlign: 'top'
+      },
+      series: [{
+        data: [
+          ['AAA', 50],
+          ['BBB', 30],
+          ['CCC', 10],
+          ['DDD', 5],
+          ['EEE', 1],
+          ['FFF', 1],
+          ['GGG', 1],
+          ['HHH', 1]
+        ]
+      }],
+
+    });
+  });
+</script>
+
+<script>
+
+// initialize line chart
+Highcharts.chart('lineChart', {
+    chart: {
+        marginBottom: 80
+    },
+    colors: ['#ff1d55', '#ffb1bd'],
+    xAxis: {
+        categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'].map(x => x.replace(/ /g, '\xA0')),
+        labels: {
+            autoRotation: [-22.5, -45, -90]
+        }
+    },
+
+    series: [
+      {
+        name: 'AAA / BTC',
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4]
+      },
+      {
+        name: 'AAA / USD',
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4].map((x, i, a) => a[(i + 3) % a.length])
+      }
+    ],
+});
+
+
+</script>
+
   </body>
-</html>
