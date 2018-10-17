@@ -25,4 +25,28 @@ body {
 path:hover.highcharts-point {
   stroke: none; }
 
+.highcharts-tooltip {
+  text-align: center; }
+
+.highcharts-tooltip text {
+  text-align: center; }
+
+.highcharts-tooltip text tspan {
+  font-family: 'Roboto', sans-serif;
+  color: #21232e;
+  font-size: 30px !important; }
+
+.highcharts-tooltip text tspan {
+  display: block !important; }
+
+.highcharts-tooltip text tspan::before {
+  content: "\A";
+  white-space: pre; }
+
+.highcharts-tooltip text tspan:nth-child(3) {
+  display: none !important; }
+
+.highcharts-tooltip text tspan[dy="15"] {
+  display: none !important; }
+
 /*# sourceMappingURL=app.css.map */

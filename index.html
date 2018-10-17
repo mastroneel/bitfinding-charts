@@ -90,11 +90,15 @@
           // tooltip: false,
           tooltip: {
               positioner: function () {
-                  return { x: 50, y: 50 };
+                  return { x: chart.plotWidth/2.2, y: chart.plotHeight/2 };
               },
               shadow: false,
               borderWidth: 0,
-              backgroundColor: 'rgba(255,255,255,0.8)'
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              fontFamily: 'Roboto',
+              color: '#21232e',
+              textAlign: 'center'
           },
           plotOptions: {
               pie: {
@@ -122,16 +126,16 @@
                     //
                     //   }
                     // },
-                  point: {
-                  events: {
-                      mouseOver: function(){
-                          this.series.chart.innerText.attr({text: this.y});
-                      },
-                      mouseOut: function(){
-                          this.series.chart.innerText.attr({text: ''});
-                      }
-                  }
-                  }
+                  // point: {
+                  // events: {
+                  //     mouseOver: function(){
+                  //         this.series.chart.innerText.attr({text: this.y});
+                  //     },
+                  //     mouseOut: function(){
+                  //         this.series.chart.innerText.attr({text: ''});
+                  //     }
+                  // }
+                  // }
               }
 
           },
@@ -174,25 +178,26 @@
               ]
           }]
       },
-       function(chart) { // on complete
+       // function(chart) { // on complete
 
-          var xpos = 5;
-          var ypos = 111;
-          var circleradius = 102;
+          // var xpos = 5;
+          // var ypos = 111;
+          // var circleradius = 102;
 
           // Render the text
-          chart.innerText = chart.renderer.text('', xpos, ypos).css({
-                  width: circleradius*2,
-                  color: '#21232e',
-                  fontSize: '40px',
-                  textAlign: 'center',
-                  maxWidth: '65px',
-                  // display: 'block',
-                  // margin: '0 auto'
-            }).attr({
-              zIndex: 999
-          }).add();
-      });
+          // chart.innerText = chart.renderer.text('', xpos, ypos).css({
+          //         width: circleradius*2,
+          //         color: '#21232e',
+          //         fontSize: '40px',
+          //         textAlign: 'center',
+          //         maxWidth: '65px',
+          //         // display: 'block',
+          //         // margin: '0 auto'
+          //   }).attr({
+          //     zIndex: 999
+          // }).add();
+      // }
+    );
   });
 
 
@@ -214,7 +219,15 @@
       //   text: 'CENTERED<br>TEXT'
       // },
       title: false,
-      tooltip: false,
+      // tooltip: false,
+      // tooltip: {
+      //     positioner: function () {
+      //         return { x: chart.plotWidth/2, y: chart.plotHeight/2 };
+      //     },
+      //     shadow: false,
+      //     borderWidth: 0,
+      //     backgroundColor: 'rgba(255,255,255,0.8)'
+      // },
       plotOptions: {
         pie: {
           innerSize: '50%',
@@ -223,14 +236,14 @@
             enabled: false
           },
           borderWidth: 5,
-          events: {
-              mouseOver: function(){
-                  this.series.chart.innerText.attr({text: this.y});
-              },
-              mouseOut: function(){
-                  this.series.chart.innerText.attr({text: 112});
-              }
-          }
+          // events: {
+          //     mouseOver: function(){
+          //         this.series.chart.innerText.attr({text: this.y});
+          //     },
+          //     mouseOut: function(){
+          //         this.series.chart.innerText.attr({text: 112});
+          //     }
+          // }
         }
       },
       colors: [

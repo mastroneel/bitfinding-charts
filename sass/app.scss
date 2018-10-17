@@ -33,6 +33,50 @@ path:hover.highcharts-point {
 }
 
 
+.highcharts-tooltip {
+  text-align: center;
+}
+
+.highcharts-tooltip text {
+  text-align: center;
+}
+
+.highcharts-tooltip text tspan{
+  font-family: 'Roboto', sans-serif;
+  color: #21232e;
+
+  font-size: 30px !important;
+}
+
+.highcharts-tooltip text tspan {
+  display: block !important;
+}
+
+.highcharts-tooltip text tspan::before {
+  content: "\A";
+  white-space: pre;
+}
+
+
+// .highcharts-tooltip text tspan:nth-child(4)::before {
+//   // content: '\A' !important;
+//   // white-space: pre !important;
+//   content: attr(data-text);
+//   background: black;
+//   padding: 1px 8px;
+// }
+
+.highcharts-tooltip text tspan:nth-child(3) {
+  display: none !important;
+}
+
+.highcharts-tooltip text tspan[dy="15"] {
+  display: none !important;
+}
+
+// .highcharts-tooltip text tspan[dx="0"] {
+//   display: none;
+// }
 // .highcharts-color-2:hover.highcharts-point {
 //   color: rgba(255, 107, 134, 1);
 // }
