@@ -27,6 +27,16 @@ body {
   margin: 0;
 }
 
+
+path:hover.highcharts-point {
+  stroke: none;
+}
+
+
+// .highcharts-color-2:hover.highcharts-point {
+//   color: rgba(255, 107, 134, 1);
+// }
+
 // #chartjs-tooltip {
 //   width: 50%;
 //   font-family: 'Roboto', sans-serif;

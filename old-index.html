@@ -184,5 +184,1497 @@
   });
   </script>
 
+
+
+
+
+
+
+
+
+
+
+
+<script>
+$(function () {
+
+    Highcharts.setOptions({
+     colors: ['#30A6D6', '#6ec0e2', '#30d5b2', '#3154D7', '#00becc', '#FFBC75', '#D530A8', '#6e87e3',
+     '#6ee1c9', '#e16ec2', '#acdbee', '#ACEEE0', '#acbaef', '#eeacdc']
+    });
+
+    $(document).ready(function () {
+
+        var seriesOptions = [],
+            seriesCounter = 0,
+            names = ['Top 5 Index - MCap Weighted', 'Top 10 Index - MCap Weighted', 'Top 20 Index - MCap Weighted',
+                    'Top 30 Index - MCap Weighted', 'Top 50 Index - MCap Weighted', 'BTC'],
+            cols = ['top_five', 'top_ten', 'top_twenty', 'top_thirty', 'top_fifty', 'bitcoin'],
+            // create the chart when all data is loaded
+        createChart = function () {
+
+            $('#index-chart').highcharts('StockChart', {
+                chart: {
+                    backgroundColor: null,
+                    type: 'line',
+                    selectionMarkerFill: '#0a0d0f'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        color: '#eceff1',
+                        fontWeight: 'bold'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                navigator: {
+                    handles: {
+                        backgroundColor: '#eceff1',
+                        borderColor: '#0a0d0f'
+                    },
+                    maskFill: 'rgba(10, 13, 15, .4)',
+                    outlineColor: 'rgba(10, 13, 15, .8)'
+                },
+                rangeSelector: {
+                    buttonTheme: { // styles for the buttons
+                        fill: 'none',
+                        stroke: 'none',
+                        'stroke-width': 0,
+                        r: 8,
+                        style: {
+                            color: '#eceff1',
+                            fontWeight: 'bold'
+                        },
+                        states: {
+                            hover: {
+                                fill: 'none',
+                                style: {
+                                    color: 'white'
+                                }
+                            },
+                            select: {
+                                fill: 'none',
+                                style: {
+                                    color: 'white'
+                                }
+                            }
+                        }
+                    },
+                    inputBoxBorderColor: 'rgba(255, 255, 255, .6)',
+                    inputBoxWidth: 120,
+                    inputBoxHeight: 16,
+                    inputStyle: {
+                        color: '#eceff1',
+                        fontWeight: 'bold'
+                    },
+                    labelStyle: {
+                        color: '#eceff1',
+                        fontWeight: 'bold'
+                    },
+                    selected: 2
+                },
+                scrollbar: {
+                    barBackgroundColor: '#00becc',
+                    barBorderWidth: 0,
+                    buttonBackgroundColor: '#111c21',
+                    buttonBorderColor: '#111c21',
+                    buttonBorderWidth: 0,
+                    buttonArrowColor: '#b0bec5',
+                    rifleColor: '#eceff1',
+                    trackBackgroundColor: '#b0bec5',
+                    trackBorderWidth: 0,
+                    trackBorderColor: 'rgba(255, 255, 255, .8)',
+                },
+                xAxis: {
+                    labels: {
+                        style: {
+                            color: '#eceff1'
+                        }
+                    }
+                },
+                yAxis: {
+                    lineColor: '#b0bec5',
+                    labels: {
+                        style: {
+                            color: '#eceff1'
+                        },
+                        formatter: function () {
+                            return '$' +this.axis.defaultLabelFormatter.call(this);
+                        }
+                    },
+                    title: {
+                        text: ''
+                    },
+                },
+
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>${point.y}</b><br/>',
+                    valueDecimals: 2,
+                    backgroundColor: '#202c32',
+                    borderColor: '#202c32',
+                    style: {
+                        "color": "#eceff1"
+                    }
+                },
+
+                series: seriesOptions
+            });
+        };
+
+        // $.each(names, function (i, name) {
+        //
+        //     $.getJSON('charts/{col}.json'.replace('{col}', cols[i]), function (data) {
+        //
+        //         seriesOptions[i] = {
+        //             name: name,
+        //             data: data
+        //         };
+        //
+        //         // As we're loading the data asynchronously, we don't know what order it will arrive. So
+        //         // we keep a counter and create the chart when all the data is loaded.
+        //         seriesCounter += 1;
+        //
+        //         if (seriesCounter === names.length) {
+        //             createChart();
+        //         }
+        //     });
+        // });
+
+        var seriesOptionsEW = [],
+            seriesCounterEW = 0,
+            namesEW = ['Top 5 Index - Equally Weighted', 'Top 10 Index - Equally Weighted', 'Top 20 Index - Equally Weighted',
+                    'Top 30 Index - Equally Weighted', 'Top 50 Index - Equally Weighted', 'BTC'],
+            colsEW = ['top_five_ew', 'top_ten_ew', 'top_twenty_ew', 'top_thirty_ew', 'top_fifty_ew', 'bitcoin'],
+            // create the chart when all data is loaded
+        createChartEW = function () {
+
+            $('#index-chart-ew').highcharts('StockChart', {
+                chart: {
+                    backgroundColor: null,
+                    type: 'line',
+                    selectionMarkerFill: '#0a0d0f'
+                },
+                title: {
+                    text: '',
+                    style: {
+                        color: '#eceff1',
+                        fontWeight: 'bold'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                navigator: {
+                    handles: {
+                        backgroundColor: '#eceff1',
+                        borderColor: '#0a0d0f'
+                    },
+                    maskFill: 'rgba(10, 13, 15, .4)',
+                    outlineColor: 'rgba(10, 13, 15, .8)'
+                },
+                rangeSelector: {
+                    buttonTheme: { // styles for the buttons
+                        fill: 'none',
+                        stroke: 'none',
+                        'stroke-width': 0,
+                        r: 8,
+                        style: {
+                            color: '#eceff1',
+                            fontWeight: 'bold'
+                        },
+                        states: {
+                            hover: {
+                                fill: 'none',
+                                style: {
+                                    color: 'white'
+                                }
+                            },
+                            select: {
+                                fill: 'none',
+                                style: {
+                                    color: 'white'
+                                }
+                            }
+                        }
+                    },
+                    inputBoxBorderColor: 'rgba(255, 255, 255, .6)',
+                    inputBoxWidth: 120,
+                    inputBoxHeight: 16,
+                    inputStyle: {
+                        color: '#eceff1',
+                        fontWeight: 'bold'
+                    },
+                    labelStyle: {
+                        color: '#eceff1',
+                        fontWeight: 'bold'
+                    },
+                    selected: 2
+                },
+                scrollbar: {
+                    barBackgroundColor: '#00becc',
+                    barBorderWidth: 0,
+                    buttonBackgroundColor: '#111c21',
+                    buttonBorderColor: '#111c21',
+                    buttonBorderWidth: 0,
+                    buttonArrowColor: '#b0bec5',
+                    rifleColor: '#eceff1',
+                    trackBackgroundColor: '#b0bec5',
+                    trackBorderWidth: 0,
+                    trackBorderColor: 'rgba(255, 255, 255, .8)',
+                },
+                xAxis: {
+                    labels: {
+                        style: {
+                            color: '#eceff1'
+                        }
+                    }
+                },
+                yAxis: {
+                    lineColor: '#b0bec5',
+                    labels: {
+                        style: {
+                            color: '#eceff1'
+                        },
+                        formatter: function () {
+                            return '$' +this.axis.defaultLabelFormatter.call(this);
+                        }
+                    },
+                    title: {
+                        text: ''
+                    },
+                },
+
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>${point.y}</b><br/>',
+                    valueDecimals: 2,
+                    backgroundColor: '#202c32',
+                    borderColor: '#202c32',
+                    style: {
+                        "color": "#eceff1"
+                    }
+                },
+
+                series: seriesOptionsEW
+            });
+        };
+
+        // $.each(namesEW, function (i, name) {
+
+        //     $.getJSON('charts/{col}.json'.replace('{col}', colsEW[i]), function (data) {
+        //
+        //         seriesOptionsEW[i] = {
+        //             name: name,
+        //             data: data
+        //         };
+        //
+        //         // As we're loading the data asynchronously, we don't know what order it will arrive. So
+        //         // we keep a counter and create the chart when all the data is loaded.
+        //         seriesCounterEW += 1;
+        //
+        //         if (seriesCounterEW === names.length) {
+        //             createChartEW();
+        //         }
+        //     });
+        // });
+        $('#top-five-assets').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-five-assets .highcharts-legend").appendTo("#top-five-legend");
+                        $("#top-five-assets .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-five-assets .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-five-assets-text h3').remove();
+                                $('#top-five-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-five-assets-text h3').remove();
+                                $('#top-five-assets-text p').remove();
+                                $('#top-five-assets-text').html('<h3>Top 5</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-five-assets-text h3').remove();
+                                $('#top-five-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_five_assets
+            }]
+        });
+        $('#top-ten-assets').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-ten-assets .highcharts-legend").appendTo("#top-ten-legend");
+                        $("#top-ten-assets .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-ten-assets .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-ten-assets-text h3').remove();
+                                $('#top-ten-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-ten-assets-text h3').remove();
+                                $('#top-ten-assets-text p').remove();
+                                $('#top-ten-assets-text').html('<h3>Top 10</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-ten-assets-text h3').remove();
+                                $('#top-ten-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_ten_assets
+            }]
+        });
+        $('#top-twenty-assets').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-twenty-assets .highcharts-legend").appendTo("#top-twenty-legend");
+                        $("#top-twenty-assets .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-twenty-assets .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-twenty-assets-text h3').remove();
+                                $('#top-twenty-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-twenty-assets-text h3').remove();
+                                $('#top-twenty-assets-text p').remove();
+                                $('#top-twenty-assets-text').html('<h3>Top 20</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-twenty-assets-text h3').remove();
+                                $('#top-twenty-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_twenty_assets
+            }]
+        });
+        $('#top-thirty-assets').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-thirty-assets .highcharts-legend").appendTo("#top-thirty-legend");
+                        $("#top-thirty-assets .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-thirty-assets .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-thirty-assets-text h3').remove();
+                                $('#top-thirty-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-thirty-assets-text h3').remove();
+                                $('#top-thirty-assets-text p').remove();
+                                $('#top-thirty-assets-text').html('<h3>Top 30</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-thirty-assets-text h3').remove();
+                                $('#top-thirty-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_thirty_assets
+            }]
+        });
+        $('#top-fifty-assets').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-fifty-assets .highcharts-legend").appendTo("#top-fifty-legend");
+                        $("#top-fifty-assets .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-fifty-assets .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-fifty-assets-text h3').remove();
+                                $('#top-fifty-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-fifty-assets-text h3').remove();
+                                $('#top-fifty-assets-text p').remove();
+                                $('#top-fifty-assets-text').html('<h3>Top 50</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-fifty-assets-text h3').remove();
+                                $('#top-fifty-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_fifty_assets
+            }]
+        });
+        $('#ethereum-assets').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#ethereum-assets .highcharts-legend").appendTo("#ethereum-legend");
+                        $("#ethereum-assets .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#ethereum-assets .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#ethereum-assets-text h3').remove();
+                                $('#ethereum-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#ethereum-assets-text h3').remove();
+                                $('#ethereum-assets-text p').remove();
+                                $('#ethereum-assets-text').html('<h3>ETH</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#ethereum-assets-text h3').remove();
+                                $('#ethereum-assets-text').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: ethereum_assets
+            }]
+        });
+        $('#top-five-assets-ew').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-five-assets-ew .highcharts-legend").appendTo("#top-five-legend-ew");
+                        $("#top-five-assets-ew .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-five-assets-ew .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-five-assets-text-ew h3').remove();
+                                $('#top-five-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-five-assets-text-ew h3').remove();
+                                $('#top-five-assets-text-ew p').remove();
+                                $('#top-five-assets-text-ew').html('<h3>Top 5</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-five-assets-text-ew h3').remove();
+                                $('#top-five-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_five_assets_ew
+            }]
+        });
+        $('#top-ten-assets-ew').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-ten-assets-ew .highcharts-legend").appendTo("#top-ten-legend-ew");
+                        $("#top-ten-assets-ew .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-ten-assets-ew .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-ten-assets-text-ew h3').remove();
+                                $('#top-ten-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-ten-assets-text-ew h3').remove();
+                                $('#top-ten-assets-text-ew p').remove();
+                                $('#top-ten-assets-text-ew').html('<h3>Top 10</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-ten-assets-text-ew h3').remove();
+                                $('#top-ten-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_ten_assets_ew
+            }]
+        });
+        $('#top-twenty-assets-ew').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-twenty-assets-ew .highcharts-legend").appendTo("#top-twenty-legend-ew");
+                        $("#top-twenty-assets-ew .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-twenty-assets-ew .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-twenty-assets-text-ew h3').remove();
+                                $('#top-twenty-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-twenty-assets-text-ew h3').remove();
+                                $('#top-twenty-assets-text-ew p').remove();
+                                $('#top-twenty-assets-text-ew').html('<h3>Top 20</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-twenty-assets-text-ew h3').remove();
+                                $('#top-twenty-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_twenty_assets_ew
+            }]
+        });
+        $('#top-thirty-assets-ew').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-thirty-assets-ew .highcharts-legend").appendTo("#top-thirty-legend-ew");
+                        $("#top-thirty-assets-ew .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-thirty-assets-ew .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-thirty-assets-text-ew h3').remove();
+                                $('#top-thirty-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-thirty-assets-text-ew h3').remove();
+                                $('#top-thirty-assets-text-ew p').remove();
+                                $('#top-thirty-assets-text-ew').html('<h3>Top 30</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-thirty-assets-text-ew h3').remove();
+                                $('#top-thirty-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_thirty_assets_ew
+            }]
+        });
+        $('#top-fifty-assets-ew').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#top-fifty-assets-ew .highcharts-legend").appendTo("#top-fifty-legend-ew");
+                        $("#top-fifty-assets-ew .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#top-fifty-assets-ew .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#top-fifty-assets-text-ew h3').remove();
+                                $('#top-fifty-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#top-fifty-assets-text-ew h3').remove();
+                                $('#top-fifty-assets-text-ew p').remove();
+                                $('#top-fifty-assets-text-ew').html('<h3>Top 50</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#top-fifty-assets-text-ew h3').remove();
+                                $('#top-fifty-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: top_fifty_assets_ew
+            }]
+        });
+        $('#ethereum-assets-ew').highcharts({
+            chart: {
+                margin: [30, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                backgroundColor: null,
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                events: {
+                    load: function (event) {
+                        $("#ethereum-assets-ew .highcharts-legend").appendTo("#ethereum-legend-ew");
+                        $("#ethereum-assets-ew .highcharts-legend").removeAttr('transform');
+                    },
+                    redraw: function(){
+                        $("#ethereum-assets-ew .highcharts-legend").removeAttr('transform');
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        enabled: false
+                    }
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size: '80%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    color: "#fff",
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true,
+                    point: {
+                        events: {
+                            mouseOver: function(){
+                                $('#ethereum-assets-text-ew h3').remove();
+                                $('#ethereum-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                            },
+                            mouseOut: function(){
+                                $('#ethereum-assets-text-ew h3').remove();
+                                $('#ethereum-assets-text-ew p').remove();
+                                $('#ethereum-assets-text-ew').html('<h3>ETH</h3>');
+                            }
+                        }
+                    }
+                },
+                series: {
+                    point: {
+                        events: {
+                            legendItemClick: function () {
+                                $('#ethereum-assets-text-ew h3').remove();
+                                $('#ethereum-assets-text-ew').html(
+                                   '<h3>' + this.name + '</h3><p><b>' + (this.y*100).toFixed(1) + '%</b></p>'
+                                );
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'left',
+                verticalAlign: 'top',
+                borderWidth: 0,
+                enabled: true,
+                itemStyle: {
+                    color: "#BBBCBD"
+                },
+                itemHoverStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [{
+                size: '80%',
+                innerSize: '65%',
+                colorByPoint: true,
+                data: ethereum_assets_ew
+            }]
+        });
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </body>
 </html>

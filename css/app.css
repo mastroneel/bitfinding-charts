@@ -22,4 +22,7 @@ body {
   padding: 0;
   margin: 0; }
 
+path:hover.highcharts-point {
+  stroke: none; }
+
 /*# sourceMappingURL=app.css.map */
