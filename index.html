@@ -10,9 +10,21 @@
   </head>
   <body>
 
-  <!-- <div id="donutChart"></div> -->
+  <!-- <div id="donutChart2"></div> -->
 
-  <div id="chart"></div>
+
+  <div class="row donut-chart-row">
+    <div class="col-xs-12 col-md-6">
+      <div id="donutChart"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+    <h2>Description</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam sed asperiores rerum praesentium velit ipsum, tempora quas. Temporibus blanditiis animi consequuntur illo repellendus. Veniam labore omnis magnam vel, asperiores ratione!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam non est, fugit animi tempore unde. Minima tempora incidunt, eveniet fuga temporibus autem officia suscipit aliquam nam, velit itaque. Mollitia, voluptate!
+    </p>
+    </div>
+  </div>
+
 
 
   <div id="lineChart"></div>
@@ -77,7 +89,7 @@
   $(function () {
       var chart = new Highcharts.Chart({
           chart: {
-              renderTo: 'chart',
+              renderTo: 'donutChart',
               type: 'pie',
               // width: 600,
               // height: 600,
@@ -89,20 +101,36 @@
           title: false,
           // tooltip: false,
           tooltip: {
+              shared: false,
+              useHTML: true,
+              formatter: function () {
+                // return 'blah <br>' + this.y;
+                // return '...' + '<br>' + '<span>  </span><br>' + '<span class="number">' + this.y + '</span>';
+                return '<div style="width: 100px; font-size: 45px;">' + this.y + '%' + '</div>';
+              },
               positioner: function () {
-                  return { x: chart.plotWidth/2.12, y: chart.plotHeight/2 };
+                  return { x: chart.plotWidth/2.6, y: chart.plotHeight/2.3 };
               },
               shadow: false,
-              borderWidth: 0,
-              backgroundColor: 'transparent',
+              borderWidth: 1,
               borderColor: 'transparent',
-              fontFamily: 'Roboto',
-              color: '#21232e',
-              textAlign: 'center'
+              backgroundColor: 'transparent',
+              // borderColor: 'transparent',
+              // fontFamily: 'Roboto',
+              // color: '#21232e',
+              // textAlign: 'center',
+              // width: '100px',
+              style: {
+                color: '#21232e',
+                fontWeight: 'bold',
+                fontFamily: 'Roboto',
+                // width: '100px',
+                textAlign: 'center',
+              }
           },
           plotOptions: {
               pie: {
-                  borderWidth: 6,
+                  borderWidth: 5,
                   borderColor: '#fff',
                   innerSize: '50%',
                   size: '100%',
@@ -211,7 +239,7 @@
     var chart1 = new Highcharts.Chart({
       chart: {
         type: 'pie',
-        renderTo: 'donutChart'
+        renderTo: 'donutChart2'
       },
       // title: {
       //   verticalAlign: 'middle',
@@ -286,16 +314,44 @@
 // initialize line chart
 Highcharts.chart('lineChart', {
     chart: {
-        marginBottom: 80
+        marginBottom: 80,
     },
     colors: ['#ff1d55', '#ffb1bd'],
     xAxis: {
         categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'].map(x => x.replace(/ /g, '\xA0')),
         labels: {
             autoRotation: [-22.5, -45, -90]
-        }
+        },
+        lineColor: '#21232e',
+        lineWidth: 4,
     },
-
+    yAxis: {
+      gridLineColor: 'transparent',
+      lineColor: '#21232e',
+      lineWidth: 4,
+      title: {
+        enabled: false
+      }
+    },
+    tooltip: {
+      borderColor: '#21232e',
+      borderWidth: 3,
+      backgroundColor: '#fff',
+      style: {
+        color: '#21232e',
+        fontFamily: 'Roboto'
+      }
+    },
+    plotOptions: {
+      series: {
+        lineWidth: 4
+      },
+      line: {
+        marker: {
+          enabled: false,
+        }
+      }
+    },
     series: [
       {
         name: 'AAA / BTC',

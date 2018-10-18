@@ -8,45 +8,60 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 400; }
 
-.widget {
-  margin: 0 auto;
-  width: 100%;
-  margin-top: 50px; }
-  .widget p {
-    text-align: center;
-    margin-top: -190px;
-    color: #21232e;
-    font-size: 40px; }
-
-.col-sm-6 {
+.row {
   padding: 0;
   margin: 0; }
 
+.donut-chart-row {
+  text-align: center;
+  padding-top: 50px; }
+  .donut-chart-row h2 {
+    color: #21232e;
+    font-size: 22px;
+    padding-top: 70px; }
+  .donut-chart-row p {
+    color: #afafaf;
+    width: 85%;
+    margin: 0 auto;
+    min-width: 290px;
+    max-width: 800px;
+    padding-top: 20px; }
+  .donut-chart-row #donutChart {
+    height: 400px;
+    width: 400px;
+    margin: 0 auto; }
+
+@media (max-width: 767px) {
+  .donut-chart-row h2 {
+    padding-top: 20px; }
+  .donut-chart-row p {
+    padding-top: 15px; } }
+@media (max-width: 420px) {
+  #donutChart {
+    width: 350px !important;
+    height: 350px !important; } }
+@media (max-width: 370px) {
+  #donutChart {
+    width: 300px !important;
+    height: 300px !important; }
+    #donutChart .highcharts-tooltip text tspan {
+      font-size: 40px !important; } }
 path:hover.highcharts-point {
   stroke: none; }
 
-.highcharts-tooltip {
-  text-align: center; }
-
-.highcharts-tooltip text {
-  text-align: center; }
-
-.highcharts-tooltip text tspan {
-  font-family: 'Roboto', sans-serif;
-  color: #21232e;
-  font-size: 30px !important; }
-
-.highcharts-tooltip text tspan {
-  display: block !important; }
-
-.highcharts-tooltip text tspan::before {
-  content: "\A";
-  white-space: pre; }
-
-.highcharts-tooltip text tspan:nth-child(3) {
-  display: none !important; }
-
-.highcharts-tooltip text tspan[dy="15"] {
-  display: none !important; }
+#lineChart {
+  width: 80%;
+  margin: 0 auto;
+  min-width: 290px;
+  max-width: 900px; }
+  #lineChart .highcharts-title {
+    display: none; }
+  #lineChart .highcharts-credits {
+    display: none; }
+  #lineChart .highcharts-tick {
+    display: none; }
+  #lineChart text {
+    font-family: 'Roboto', sans-serif;
+    color: #21232e; }
 
 /*# sourceMappingURL=app.css.map */
