@@ -10,9 +10,11 @@
   </head>
   <body>
 
-  <!-- <div id="donutChart2"></div> -->
 
-
+  <!-- first index fund -->
+  <div class="title-container">
+    <h1>AAA INDEX FUND</h1>
+  </div>
   <div class="row donut-chart-row">
     <div class="col-xs-12 col-md-6">
       <div id="donutChart"></div>
@@ -22,19 +24,84 @@
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam sed asperiores rerum praesentium velit ipsum, tempora quas. Temporibus blanditiis animi consequuntur illo repellendus. Veniam labore omnis magnam vel, asperiores ratione!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam non est, fugit animi tempore unde. Minima tempora incidunt, eveniet fuga temporibus autem officia suscipit aliquam nam, velit itaque. Mollitia, voluptate!
     </p>
+      <div class="legend-container">
+        <table>
+          <tr>
+            <td class="color-1">AAA</td>
+            <td class="color-5">EEE</td>
+          </tr>
+          <tr>
+            <td class="color-2">BBB</td>
+            <td class="color-6">FFF</td>
+          </tr>
+          <tr>
+            <td class="color-3">CCC</td>
+            <td class="color-7">GGG</td>
+          </tr>
+          <tr>
+            <td class="color-4">DDD</td>
+            <td class="color-8">HHH</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-
 
   <div class="row line-chart-row">
     <div class="col-xs-12">
       <div id="lineChart"></div>
     </div>
   </div>
+  <!-- end first index fund -->
 
 
+  <!-- divider -->
+  <div class="divider"></div>
 
-<!-- <div id="index-chart"></div> -->
+
+  <!-- second index fund  -->
+  <div class="title-container">
+    <h1>BBB INDEX FUND</h1>
+  </div>
+  <div class="row donut-chart-row">
+    <div class="col-xs-12 col-md-6">
+      <div id="donutChart2"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+    <h2>Description</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam sed asperiores rerum praesentium velit ipsum, tempora quas. Temporibus blanditiis animi consequuntur illo repellendus. Veniam labore omnis magnam vel, asperiores ratione!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam non est, fugit animi tempore unde. Minima tempora incidunt, eveniet fuga temporibus autem officia suscipit aliquam nam, velit itaque. Mollitia, voluptate!
+    </p>
+      <div class="legend-container">
+        <table>
+          <tr>
+            <td class="color-1">AAA</td>
+            <td class="color-5">EEE</td>
+          </tr>
+          <tr>
+            <td class="color-2">BBB</td>
+            <td class="color-6">FFF</td>
+          </tr>
+          <tr>
+            <td class="color-3">CCC</td>
+            <td class="color-7">GGG</td>
+          </tr>
+          <tr>
+            <td class="color-4">DDD</td>
+            <td class="color-8">HHH</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row line-chart-row">
+    <div class="col-xs-12">
+      <div id="lineChart2"></div>
+    </div>
+  </div>
+  <!-- end second index fund -->
+
 
 
   <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
@@ -50,46 +117,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <script>
 
-
-
+  // initialize donut chart 1
   $(function () {
       var chart = new Highcharts.Chart({
           chart: {
@@ -103,36 +133,25 @@
               enabled: false
           },
           title: {
-            // verticalAlign: 'top',
-            // floating: true,
-            text: 'AAA<br>Index Fund'
+            text: 'AAA Distribution',
           },
-          // tooltip: false,
           tooltip: {
               shared: false,
               useHTML: true,
               formatter: function () {
-                // return 'blah <br>' + this.y;
-                // return '...' + '<br>' + '<span>  </span><br>' + '<span class="number">' + this.y + '</span>';
-                return '<div style="width: 100px; font-size: 45px;">' + this.y + '%' + '</div>';
+                return '<div style="width: 100px; font-size: 42px;">' + this.y + '<span class="percent">%</span>' + '</div>';
               },
               positioner: function () {
-                  return { x: chart.plotWidth/2.55, y: chart.plotHeight/1.7 };
+                  return { x: chart.plotWidth/2.65, y: chart.plotHeight/1.85 };
               },
               shadow: false,
               borderWidth: 1,
               borderColor: 'transparent',
               backgroundColor: 'transparent',
-              // borderColor: 'transparent',
-              // fontFamily: 'Roboto',
-              // color: '#21232e',
-              // textAlign: 'center',
-              // width: '100px',
               style: {
                 color: '#21232e',
                 fontWeight: 'bold',
                 fontFamily: 'Roboto',
-                // width: '100px',
                 textAlign: 'center',
               }
           },
@@ -142,38 +161,8 @@
                   borderColor: '#fff',
                   innerSize: '50%',
                   size: '100%',
-                  // shadow: true,
-                  // {
-                  //     color: '#000000',
-                  //     offsetX: 0,
-                  //     offsetY: 2,
-                  //     opacity: 0.7,
-                  //     width: 3
-                  // },
                   dataLabels: false,
-                  // stickyTracking: false,
-                  // states: {
-                  //     hover: {
-                  //         enabled: false
-                  //     }
-                  // },
-                    // states: {
-                    //   hover: {
-                    //
-                    //   }
-                    // },
-                  // point: {
-                  // events: {
-                  //     mouseOver: function(){
-                  //         this.series.chart.innerText.attr({text: this.y});
-                  //     },
-                  //     mouseOut: function(){
-                  //         this.series.chart.innerText.attr({text: ''});
-                  //     }
-                  // }
-                  // }
               }
-
           },
           colors: [
             'rgba(255, 29, 85, 1)',
@@ -192,11 +181,6 @@
             verticalAlign: 'top'
           },
           series: [{
-              // data: [
-              //     {y:40, color: colors[0]},
-              //     {y:0, color: colors[1]},
-              //     {y:60, color: colors[2]}
-              // ]
               states: {
                 hover: {
                   enabled: false,
@@ -214,113 +198,14 @@
               ]
           }]
       },
-       // function(chart) { // on complete
-
-          // var xpos = 5;
-          // var ypos = 111;
-          // var circleradius = 102;
-
-          // Render the text
-          // chart.innerText = chart.renderer.text('', xpos, ypos).css({
-          //         width: circleradius*2,
-          //         color: '#21232e',
-          //         fontSize: '40px',
-          //         textAlign: 'center',
-          //         maxWidth: '65px',
-          //         // display: 'block',
-          //         // margin: '0 auto'
-          //   }).attr({
-          //     zIndex: 999
-          // }).add();
-      // }
     );
   });
 
-
-
-
-
-
-
-  // initialize donut chart
-  document.addEventListener("DOMContentLoaded", function() {
-    var chart1 = new Highcharts.Chart({
-      chart: {
-        type: 'pie',
-        renderTo: 'donutChart2'
-      },
-      // title: true,
-      title: {
-        verticalAlign: 'top',
-        floating: true,
-        text: 'AAA<br>Index Fund'
-      },
-
-      // tooltip: false,
-      // tooltip: {
-      //     positioner: function () {
-      //         return { x: chart.plotWidth/2, y: chart.plotHeight/2 };
-      //     },
-      //     shadow: false,
-      //     borderWidth: 0,
-      //     backgroundColor: 'rgba(255,255,255,0.8)'
-      // },
-      plotOptions: {
-        pie: {
-          innerSize: '50%',
-          showInLegend: true,
-          dataLabels: {
-            enabled: false
-          },
-          borderWidth: 5,
-          // events: {
-          //     mouseOver: function(){
-          //         this.series.chart.innerText.attr({text: this.y});
-          //     },
-          //     mouseOut: function(){
-          //         this.series.chart.innerText.attr({text: 112});
-          //     }
-          // }
-        }
-      },
-      colors: [
-        'rgba(255, 29, 85, 1)',
-        'rgba(255, 107, 134, 1)',
-        'rgba(255, 177, 189, 1)',
-        'rgba(255, 225, 230, 1)',
-        'rgba(191, 192, 193, 1)',
-        'rgba(212, 213, 213, 1)',
-        'rgba(240, 140, 158, 1)',
-        'rgba(250, 82, 124, 1)'
-      ],
-      legend: {
-        align: 'center',
-        layout: 'horizontal',
-        floating: true,
-        borderRadius: 0,
-        squareSymbol: true,
-        verticalAlign: 'top'
-      },
-      series: [{
-        data: [
-          ['AAA', 50],
-          ['BBB', 30],
-          ['CCC', 10],
-          ['DDD', 5],
-          ['EEE', 1],
-          ['FFF', 1],
-          ['GGG', 1],
-          ['HHH', 1]
-        ]
-      }],
-
-    });
-  });
 </script>
 
 <script>
 
-// initialize line chart
+// initialize line chart 1
 Highcharts.chart('lineChart', {
     chart: {
         marginBottom: 80,
@@ -378,5 +263,156 @@ Highcharts.chart('lineChart', {
 
 
 </script>
+
+
+
+<script>
+
+// initialize donut chart 2
+$(function () {
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'donutChart2',
+            type: 'pie',
+            // width: 600,
+            // height: 600,
+            borderRadius: 0
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+          text: 'BBB Distribution',
+        },
+        tooltip: {
+            shared: false,
+            useHTML: true,
+            formatter: function () {
+              return '<div style="width: 100px; font-size: 42px;">' + this.y + '<span class="percent">%</span>' + '</div>';
+            },
+            positioner: function () {
+                return { x: chart.plotWidth/2.65, y: chart.plotHeight/1.85 };
+            },
+            shadow: false,
+            borderWidth: 1,
+            borderColor: 'transparent',
+            backgroundColor: 'transparent',
+            style: {
+              color: '#21232e',
+              fontWeight: 'bold',
+              fontFamily: 'Roboto',
+              textAlign: 'center',
+            }
+        },
+        plotOptions: {
+            pie: {
+                borderWidth: 5,
+                borderColor: '#fff',
+                innerSize: '50%',
+                size: '100%',
+                dataLabels: false,
+            }
+        },
+        colors: [
+          'rgba(255, 29, 85, 1)',
+          'rgba(255, 107, 134, 1)',
+          'rgba(255, 177, 189, 1)',
+          'rgba(255, 225, 230, 1)',
+          'rgba(191, 192, 193, 1)',
+          'rgba(212, 213, 213, 1)',
+          'rgba(240, 140, 158, 1)',
+          'rgba(250, 82, 124, 1)'
+        ],
+        legend: {
+          align: 'center',
+          layout: 'horizontal',
+          floating: true,
+          verticalAlign: 'top'
+        },
+        series: [{
+            states: {
+              hover: {
+                enabled: false,
+              }
+            },
+            data: [
+              ['AAA', 41],
+              ['BBB', 35],
+              ['CCC', 10],
+              ['DDD', 5],
+              ['EEE', 2],
+              ['FFF', 2],
+              ['GGG', 2],
+              ['HHH', 2]
+            ]
+        }]
+    },
+  );
+});
+
+</script>
+
+<script>
+
+// initialize line chart 2
+Highcharts.chart('lineChart2', {
+  chart: {
+      marginBottom: 80,
+  },
+  title: {
+      text: 'BBB Comparison',
+  },
+  colors: ['#ff1d55', '#ffb1bd'],
+  xAxis: {
+      categories: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'].map(x => x.replace(/ /g, '\xA0')),
+      labels: {
+          autoRotation: [-22.5, -45, -90]
+      },
+      lineColor: '#21232e',
+      lineWidth: 5,
+  },
+  yAxis: {
+    gridLineColor: 'transparent',
+    lineColor: '#21232e',
+    lineWidth: 5,
+    title: {
+      enabled: false
+    }
+  },
+  tooltip: {
+    borderColor: '#21232e',
+    borderWidth: 3,
+    backgroundColor: '#fff',
+    style: {
+      color: '#21232e',
+      fontFamily: 'Roboto'
+    }
+  },
+  plotOptions: {
+    series: {
+      lineWidth: 5
+    },
+    line: {
+      marker: {
+        enabled: false,
+      }
+    }
+  },
+  series: [
+    {
+      name: 'BBB / BTC',
+      data: [129.9, 31.5, 136.4, 109.2, 94.0, 156.0, 85.6, 128.5, 236.4]
+    },
+    {
+      name: 'BBB / USD',
+      data: [49.9, 91.5, 126.4, 159.2, 124.0, 196.0, 215.6, 138.5, 206.4].map((x, i, a) => a[(i + 3) % a.length])
+    }
+  ],
+});
+
+
+</script>
+
+
 
   </body>
