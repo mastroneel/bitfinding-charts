@@ -144,10 +144,9 @@ path:hover.highcharts-point {
   .line-chart-row .col-xs-12 {
     width: 100%; }
   .line-chart-row #lineChart, .line-chart-row #lineChart2 {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
-    min-width: 290px;
-    max-width: 900px; }
+    min-width: 290px; }
     .line-chart-row #lineChart .highcharts-credits, .line-chart-row #lineChart2 .highcharts-credits {
       display: none; }
     .line-chart-row #lineChart .highcharts-tick, .line-chart-row #lineChart2 .highcharts-tick {
@@ -160,12 +159,6 @@ path:hover.highcharts-point {
     color: #21232e;
     font-weight: bold; }
 
-@media (max-width: 1100px) {
-  .line-chart-row #lineChart, .line-chart-row #lineChart2 {
-    width: 70%; } }
-@media (max-width: 900px) {
-  .line-chart-row #lineChart, .line-chart-row #lineChart2 {
-    width: 90%; } }
 .divider {
   width: 85%;
   height: 0;
