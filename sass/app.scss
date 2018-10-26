@@ -5,7 +5,7 @@
 // ******************
 
 body {
-  background-color: #fff;
+  // background-color: #fff;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -14,11 +14,48 @@ body {
   font-weight: 400;
 }
 
+.gray-container {
+  background-color: #f8f9fa;
+  padding: 0 70px;
+}
+
+@media (min-width: 1600px) {
+  .gray-container {
+    padding: 0 100px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .gray-container {
+    padding: 0 200px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .gray-container {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .gray-container {
+    padding: 0px;
+  }
+}
+
 .content-container {
+  background-color: #fff;
   padding-top: 80px;
   padding-bottom: 100px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (max-width: 767px) {
+  .content-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -169,7 +206,7 @@ path:hover.highcharts-point {
       font-family: 'Roboto', sans-serif;
       font-weight: bold;
       font-size: 14px;
-      text-align: center;
+      text-align: left;
       padding: 2px 25px;
     }
   }
@@ -257,13 +294,13 @@ path:hover.highcharts-point {
 
 
 .line-chart-row {
-  width: 100vw;
+  // width: 100vw;
   margin-top: 100px;
   .col-xs-12 {
     width: 100%;
   }
   .line-chart {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     min-width: 290px;
     // max-width: 900px;
@@ -355,7 +392,7 @@ path:hover.highcharts-point {
     display: inline-block;
     margin: 0 0 -3px;
     padding: 15px 25px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     text-align: center;
     color: #21232e;
