@@ -843,9 +843,51 @@ Date,Price Against BTC,Price Against USD
 
 $(function() {
   window.chart = Highcharts.stockChart('container', {
-    data: {
+		chart: {
+	      marginBottom: 80,
+	  },
+	  exporting: {
+	    enabled: false
+	  },
+	  title: {
+	      text: 'AAA Comparison',
+	  },
+	  colors: ['#ff1d55', '#ffb1bd'],
+		data: {
       csv: document.getElementById('csv').innerHTML
     }
+	  xAxis: {
+	      lineColor: '#21232e',
+	      lineWidth: 5,
+	  },
+	  yAxis: {
+	    gridLineColor: 'transparent',
+	    lineColor: '#21232e',
+	    lineWidth: 5,
+	    title: {
+	      enabled: false
+	    }
+	  },
+	  tooltip: {
+	    shared: true,
+	    borderColor: '#21232e',
+	    borderWidth: 3,
+	    backgroundColor: '#fff',
+	    style: {
+	      color: '#21232e',
+	      fontFamily: 'Roboto'
+	    }
+	  },
+	  plotOptions: {
+	    series: {
+	      lineWidth: 5
+	    },
+	    line: {
+	      marker: {
+	        enabled: false,
+	      }
+	    }
+	  },
   });
 });
 
